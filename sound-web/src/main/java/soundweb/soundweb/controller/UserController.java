@@ -22,6 +22,7 @@ public class UserController {
 
     @RequestMapping("/")
     public String home(Model model){
+        userService.join();
         List<UserDto> users = userService.findAllUser();
         logger.info(users+"");
         model.addAttribute("User",users);

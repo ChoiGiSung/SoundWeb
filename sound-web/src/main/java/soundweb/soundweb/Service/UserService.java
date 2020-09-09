@@ -15,4 +15,8 @@ public class UserService {
     public List<UserDto> findAllUser(){
         return userDao.findAll();
     }
+
+    public String join(){
+        return userDao.addUser();
+    }
 }
