@@ -1,13 +1,11 @@
 package soundweb.soundweb.Dao;
 
-import org.apache.catalina.util.ParameterMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
-import soundweb.soundweb.Dto.UserDto;
+import soundweb.soundweb.Dto.UserEntity;
 import soundweb.soundweb.Repository.UserRepository;
 
 import javax.sql.DataSource;
@@ -23,23 +21,23 @@ public class UserDao implements UserRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @Autowired
-    private DataSource dataSource;
+//    @Autowired
+//    private DataSource dataSource;
 
     private SimpleJdbcInsert simpleJdbcInsert;
 
 
     @Override
-    public List<UserDto> findAll() {
+    public List<UserEntity> findAll() {
 
-        List<UserDto> result = jdbcTemplate.query("select * from user", RowUSerDto());
+        List<UserEntity> result = jdbcTemplate.query("select * from user", RowUSerDto());
         return result;
     }
 
     @Override
     public String addUser() {
-        //simpleJdbcInsert=new SimpleJdbcInsert(jdbcTemplate);
-        simpleJdbcInsert=new SimpleJdbcInsert(dataSource);
+        simpleJdbcInsert=new SimpleJdbcInsert(jdbcTemplate);
+        //simpleJdbcInsert=new SimpleJdbcInsert(dataSource);
         simpleJdbcInsert.setTableName("user");
 
         Map<String,String> user=new HashMap<>();
@@ -61,11 +59,17 @@ public class UserDao implements UserRepository {
         return "ok";
     }
 
-    public RowMapper<UserDto> RowUSerDto(){
-        return new RowMapper<UserDto>() {
+    @Override
+    public List<UserEntity> findBYId(String User_id) {
+        List<UserEntity> findUser = jdbcTemplate.query("select * from user where user_id=?", RowUSerDto(), User_id);
+        return findUser;
+    }
+
+    public RowMapper<UserEntity> RowUSerDto(){
+        return new RowMapper<UserEntity>() {
             @Override
-            public UserDto mapRow(ResultSet rs, int rowNum) throws SQLException {
-                UserDto userDto=new UserDto();
+            public UserEntity mapRow(ResultSet rs, int rowNum) throws SQLException {
+                UserEntity userDto=new UserEntity();
                 userDto.setUser_id(rs.getString("user_id"));
                 userDto.setUser_pwd(rs.getString("user_pwd"));
                 userDto.setDay_1(rs.getString("day_1"));
