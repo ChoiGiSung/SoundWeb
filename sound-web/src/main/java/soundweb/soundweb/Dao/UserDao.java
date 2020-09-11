@@ -60,9 +60,16 @@ public class UserDao implements UserRepository {
     }
 
     @Override
-    public List<UserEntity> findBYId(String User_id) {
-        List<UserEntity> findUser = jdbcTemplate.query("select * from user where user_id=?", RowUSerDto(), User_id);
+    public List<UserEntity> login(String User_id,String User_pwd) {
+        List<UserEntity> findUser = jdbcTemplate.query("select * from user where user_id=? and user_pwd=?", RowUSerDto(), User_id,User_pwd);
         return findUser;
+    }
+
+    @Override
+    public List<UserEntity> findSeting(String User_id) {
+        List<UserEntity> findSeting = jdbcTemplate.query("select * from user where user_id=?",RowUSerDto(),User_id);
+        //select user_seting from user where user_id=? 하면 not found라고 오류남 ?왜
+        return findSeting;
     }
 
     public RowMapper<UserEntity> RowUSerDto(){

@@ -20,7 +20,12 @@ public class UserService {
         return userDao.addUser();
     }
 
-    public List<UserEntity> findById(String user_id){
-        return userDao.findBYId(user_id);
+    public List<UserEntity> login(String user_id,String user_pwd){
+        return userDao.login(user_id,user_pwd);
     }
+    public List<UserEntity> findSeting(String user_id){
+        return userDao.findSeting(user_id);
+    }
+
+
 }
