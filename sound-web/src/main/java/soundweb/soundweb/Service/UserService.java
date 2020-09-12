@@ -3,6 +3,7 @@ package soundweb.soundweb.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import soundweb.soundweb.Dao.UserDao;
+import soundweb.soundweb.Dto.UpdateUserDay;
 import soundweb.soundweb.Dto.UserEntity;
 import java.util.List;
 
@@ -23,9 +24,11 @@ public class UserService {
     public List<UserEntity> login(String user_id,String user_pwd){
         return userDao.login(user_id,user_pwd);
     }
-    public List<UserEntity> findSeting(String user_id){
-        return userDao.findSeting(user_id);
+    public List<UserEntity> findData(String user_id){
+        return userDao.findData(user_id);
     }
+    public String updateDay(String user_id,UpdateUserDay updateUserDay){return userDao.updateUserDay( user_id,updateUserDay);}
+    public String updateSetting(String user_id,String setting){return userDao.updateUserSetting(user_id,setting);}
 
 
 }

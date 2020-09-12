@@ -1,10 +1,13 @@
 package soundweb.soundweb.Dao;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
+import soundweb.soundweb.Dto.UpdateUserDay;
 import soundweb.soundweb.Dto.UserEntity;
 import soundweb.soundweb.Repository.UserRepository;
 
@@ -17,6 +20,8 @@ import java.util.Map;
 
 @Repository
 public class UserDao implements UserRepository {
+
+    private Logger logger= LoggerFactory.getLogger(UserDao.class);
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -66,10 +71,35 @@ public class UserDao implements UserRepository {
     }
 
     @Override
-    public List<UserEntity> findSeting(String User_id) {
+    public List<UserEntity> findData(String User_id) {
         List<UserEntity> findSeting = jdbcTemplate.query("select * from user where user_id=?",RowUSerDto(),User_id);
+
         //select user_seting from user where user_id=? 하면 not found라고 오류남 ?왜
         return findSeting;
+    }
+
+    //day업데이트
+    @Override
+    public String updateUserDay(String user_id,UpdateUserDay updateUserDay) {
+        jdbcTemplate.update("update user set day_1=?,day_2=?,day_3=?,day_4=?,day_5=?,day_6=?,day_7=? where user_id =?"
+                ,updateUserDay.getDay_1()
+                ,updateUserDay.getDay_2()
+                ,updateUserDay.getDay_3()
+                ,updateUserDay.getDay_4()
+                ,updateUserDay.getDay_5()
+                ,updateUserDay.getDay_6()
+                ,updateUserDay.getDay_7()
+                ,user_id);
+
+        return null;
+    }
+
+    //setting 업데이트
+    @Override
+    public String updateUserSetting(String user_id, String setting) {
+        logger.info("세팅업데이트",setting);
+        jdbcTemplate.update("update user set user_seting=? where user_id=?",setting,user_id);
+        return null;
     }
 
     public RowMapper<UserEntity> RowUSerDto(){
