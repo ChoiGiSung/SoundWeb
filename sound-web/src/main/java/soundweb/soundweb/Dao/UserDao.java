@@ -102,6 +102,29 @@ public class UserDao implements UserRepository {
         return null;
     }
 
+    //회원 가입
+    @Override
+    public String join(String user_id, String user_pwd) {
+        //보내온 아이디로 검색하고 있으면 유저있음
+        //없으면 회원 가입 가능
+        List<UserEntity> query = jdbcTemplate.query("select * from user where user_id=?", RowUSerDto(), user_id);
+        if(!query.isEmpty()){
+            
+            if(query.get(0).getUser_id().equals(user_id)){
+                return "이미있는회원";
+            }
+        }else{
+            //simpleJdbcInsert=new SimpleJdbcInsert(jdbcTemplate) 이거로도 할 수 있지만 너무 길어진다
+            jdbcTemplate.update("insert into user (user_id,user_pwd) value (?,?)",user_id,user_pwd);
+            return "회원가입완료"; //회원 가입하기
+        }
+
+        return null;
+    }
+
+
+
+
     public RowMapper<UserEntity> RowUSerDto(){
         return new RowMapper<UserEntity>() {
             @Override

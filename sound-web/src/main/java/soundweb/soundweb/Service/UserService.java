@@ -29,6 +29,7 @@ public class UserService {
     }
     public String updateDay(String user_id,UpdateUserDay updateUserDay){return userDao.updateUserDay( user_id,updateUserDay);}
     public String updateSetting(String user_id,String setting){return userDao.updateUserSetting(user_id,setting);}
+    public String joinUser(String user_id,String user_pwd){return userDao.join(user_id,user_pwd);}
 
 
 }

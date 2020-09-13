@@ -11,5 +11,6 @@ public interface UserRepository {
     List<UserEntity> findData(String User_id);
     String updateUserDay(String user_id,UpdateUserDay updateUserDay);
     String updateUserSetting(String user_id,String setting);
+    String join(String user_id,String user_pwd);
 
 }
