@@ -12,6 +12,7 @@ import soundweb.soundweb.Dto.UserEntity;
 import soundweb.soundweb.Service.UserService;
 import soundweb.soundweb.controller.UserController;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -70,6 +71,15 @@ public class UserApiController {
     }
 
 
+
+
+    @GetMapping("/api/hello")
+    public HashMap hello() {
+        HashMap result = new HashMap();
+        result.put("message", "123");
+
+        return result;
+    }
 
 
 
