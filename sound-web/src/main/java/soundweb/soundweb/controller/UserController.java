@@ -19,7 +19,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("/")
+    @RequestMapping("/home")
     public String home(Model model){
        // userService.join();
         List<UserEntity> users = userService.findAllUser();

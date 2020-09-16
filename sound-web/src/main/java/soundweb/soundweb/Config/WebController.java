@@ -4,7 +4,7 @@ import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-//react 프로젝트 경루
+//에러시 갈곳
 
 @Controller
 public class WebController implements ErrorController {

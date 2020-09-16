@@ -30,26 +30,46 @@ dependencies {
 	}
 }
 
+
 test {
 	useJUnitPlatform()
 }
 
-
 //react 프로젝트 경루
-
-apply plugin: "com.moowork.node"
-
-def webappDir = "$projectDir/frontend/soundweb-frontend"
-
-task appNpmInstall(type: NpmTask) {
-	workingDir = file("${webappDir}")
-	args = ["run", "build"]
+def webappDir = "$projectDir/src/main/soundweb-frontend"
+sourceSets {
+	main {
+		resources {
+			srcDirs = ["$webappDir/build", "$projectDir/src/main/resources"]
+		}
+	}
+}
+processResources {
+	dependsOn "buildReact"
+}
+task buildReact(type: Exec) {
+	dependsOn "installReact"
+	workingDir "$webappDir"
+	inputs.dir "$webappDir"
+	group = BasePlugin.BUILD_GROUP
+	if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+		commandLine "npm.cmd", "run-script", "build"
+	} else {
+		commandLine "npm", "run-script", "build"
+	}
 }
 
-task copyWebApp(type: Copy) {
-	from 'frontend/soundweb-frontend/build'
-	into "build/resources/main/static"
+task installReact(type: Exec) {
+	workingDir "$webappDir"
+	inputs.dir "$webappDir"
+	group = BasePlugin.BUILD_GROUP
+	if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+		commandLine "npm.cmd", "audit", "fix"
+		commandLine 'npm.cmd', 'install'
+	} else {
+		commandLine "npm", "audit", "fix"
+		commandLine 'npm', 'install'
+	}
 }
 
-copyWebApp.dependsOn(appNpmInstall)
-compileJava.dependsOn(copyWebApp)
+
