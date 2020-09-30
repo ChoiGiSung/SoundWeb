@@ -25,7 +25,7 @@ public class UserLoginApiController {
 
         List<UserEntity> findUser = userService.login(user_id,user_pwd);//영속성 엔티티이므로 lazy초기화를 해야함
         List<UserDto> result = findUser.stream() //lazy초기화
-                .map(u -> new UserDto(u.getUser_id()))
+                .map(u -> new UserDto(u.getUser_id(),u.getUser_seting()))
                 .collect(Collectors.toList());
         if (result.isEmpty())//해당 유저가 없으면 널 반환
             return new Result(null);
@@ -64,6 +64,7 @@ public class UserLoginApiController {
 
         //노출하고 싶은거만 서술
         private String user_id; //엔티티와 달리 이름을 변경해서 내보내도 괜찮다
+        private String user_seting;
     }
     @Data
     @AllArgsConstructor

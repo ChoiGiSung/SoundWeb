@@ -10,14 +10,15 @@ import MainComp from "./MainComp";
 function App() {
   //return <div>ddM</div>;//<div clssName="App"/>
     return(
-        <div clssName="App">
-            <HashRouter>
-              <Navigation />
-
-                <Route path="/movie-detail" exact={true} component={Detail} />
-                 <Route path="/MainComp"  component={MainComp} />
-             </HashRouter>
-        </div>
+//        <div clssName="App">
+//            <HashRouter>
+//              <Navigation />
+//
+//                <Route path="/movie-detail" exact={true} component={Detail} />
+//                 <Route path="/MainComp"  component={MainComp} />
+//             </HashRouter>
+//        </div>
+    <div>sample</div>
     );
 }
 //<Route path="/" exact={true} component={Home} />
