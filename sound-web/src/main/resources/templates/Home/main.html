@@ -5,11 +5,27 @@
     <title>하하</title>
 </head>
 <body>
-    <table>
-        <tr th:each="user:${User}">
-            <td th:text="${user.user_id}"></td>
-        </tr>
-    </table>
+<!--    <table>-->
+<!--        <tr th:each="user:${User}">-->
+<!--            <td th:text="${user.user_id}"></td>-->
+<!--        </tr>-->
+<!--    </table>-->
+    <div>
+        <br>
+        <hr>
+        <form method="post">
+            <div>
+                <input type="text" placeholder="ID"><br>
+                <input type="password" placeholder="PWD"><br>
+            </div>
+            <input type="submit" value="보내기">
+            <hr>
+
+        </form>
+    </div>
+
+
+
 
 </body>
 </html>
