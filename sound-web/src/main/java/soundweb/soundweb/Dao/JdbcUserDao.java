@@ -8,10 +8,9 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 import soundweb.soundweb.Dto.UpdateUserDay;
-import soundweb.soundweb.Dto.UserEntity;
-import soundweb.soundweb.Repository.UserRepository;
+import soundweb.soundweb.Dto.UserDto;
+import soundweb.soundweb.jdbcService.JdbcUserService;
 
-import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -19,9 +18,9 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public class UserDao implements UserRepository {
+public class JdbcUserDao implements JdbcUserService {
 
-    private Logger logger= LoggerFactory.getLogger(UserDao.class);
+    private Logger logger= LoggerFactory.getLogger(JdbcUserDao.class);
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -33,9 +32,9 @@ public class UserDao implements UserRepository {
 
 
     @Override
-    public List<UserEntity> findAll() {
+    public List<UserDto> findAll() {
 
-        List<UserEntity> result = jdbcTemplate.query("select * from user", RowUSerDto());
+        List<UserDto> result = jdbcTemplate.query("select * from user", RowUSerDto());
         return result;
     }
 
@@ -65,14 +64,14 @@ public class UserDao implements UserRepository {
     }
 
     @Override
-    public List<UserEntity> login(String User_id,String User_pwd) {
-        List<UserEntity> findUser = jdbcTemplate.query("select * from user where user_id=? and user_pwd=?", RowUSerDto(), User_id,User_pwd);
+    public List<UserDto> login(String User_id, String User_pwd) {
+        List<UserDto> findUser = jdbcTemplate.query("select * from user where user_id=? and user_pwd=?", RowUSerDto(), User_id,User_pwd);
         return findUser;
     }
 
     @Override
-    public List<UserEntity> findData(String User_id) {
-        List<UserEntity> findSeting = jdbcTemplate.query("select * from user where user_id=?",RowUSerDto(),User_id);
+    public List<UserDto> findData(String User_id) {
+        List<UserDto> findSeting = jdbcTemplate.query("select * from user where user_id=?",RowUSerDto(),User_id);
 
         //select user_seting from user where user_id=? 하면 not found라고 오류남 ?왜
         return findSeting;
@@ -107,7 +106,7 @@ public class UserDao implements UserRepository {
     public String join(String user_id, String user_pwd) {
         //보내온 아이디로 검색하고 있으면 유저있음
         //없으면 회원 가입 가능
-        List<UserEntity> query = jdbcTemplate.query("select * from user where user_id=?", RowUSerDto(), user_id);
+        List<UserDto> query = jdbcTemplate.query("select * from user where user_id=?", RowUSerDto(), user_id);
         if(!query.isEmpty()){
             
             if(query.get(0).getUser_id().equals(user_id)){
@@ -125,11 +124,11 @@ public class UserDao implements UserRepository {
 
 
 
-    public RowMapper<UserEntity> RowUSerDto(){
-        return new RowMapper<UserEntity>() {
+    public RowMapper<UserDto> RowUSerDto(){
+        return new RowMapper<UserDto>() {
             @Override
-            public UserEntity mapRow(ResultSet rs, int rowNum) throws SQLException {
-                UserEntity userDto=new UserEntity();
+            public UserDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+                UserDto userDto=new UserDto();
                 userDto.setUser_id(rs.getString("user_id"));
                 userDto.setUser_pwd(rs.getString("user_pwd"));
                 userDto.setDay_1(rs.getString("day_1"));

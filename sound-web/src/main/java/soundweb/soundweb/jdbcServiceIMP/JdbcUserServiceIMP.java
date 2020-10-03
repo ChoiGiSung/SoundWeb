@@ -1,19 +1,19 @@
-package soundweb.soundweb.Service;
+package soundweb.soundweb.jdbcServiceIMP;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import soundweb.soundweb.Dao.UserDao;
+import soundweb.soundweb.Dao.JdbcUserDao;
 import soundweb.soundweb.Dto.UpdateUserDay;
-import soundweb.soundweb.Dto.UserEntity;
+import soundweb.soundweb.Dto.UserDto;
 import java.util.List;
 
 @Service
-public class UserService {
+public class JdbcUserServiceIMP {
 
     @Autowired
-    private UserDao userDao;
+    private JdbcUserDao userDao;
 
-    public List<UserEntity> findAllUser(){
+    public List<UserDto> findAllUser(){
         return userDao.findAll();
     }
 
@@ -21,10 +21,10 @@ public class UserService {
         return userDao.addUser();
     }
 
-    public List<UserEntity> login(String user_id,String user_pwd){
+    public List<UserDto> login(String user_id, String user_pwd){
         return userDao.login(user_id,user_pwd);
     }
-    public List<UserEntity> findData(String user_id){
+    public List<UserDto> findData(String user_id){
         return userDao.findData(user_id);
     }
     public String updateDay(String user_id,UpdateUserDay updateUserDay){return userDao.updateUserDay( user_id,updateUserDay);}

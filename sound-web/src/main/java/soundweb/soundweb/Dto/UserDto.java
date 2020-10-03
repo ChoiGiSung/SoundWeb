@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class UserEntity {
+public class UserDto {
     //dto이미만 나중을 위해 entity라고 가정하자
 
     private String user_id;

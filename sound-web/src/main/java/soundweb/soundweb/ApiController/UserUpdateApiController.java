@@ -1,6 +1,5 @@
 package soundweb.soundweb.ApiController;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,13 +9,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import soundweb.soundweb.Dto.UpdateUserDay;
-import soundweb.soundweb.Service.UserService;
+import soundweb.soundweb.jdbcServiceIMP.JdbcUserServiceIMP;
 import soundweb.soundweb.controller.UserController;
 
 @RestController
 public class UserUpdateApiController {
     @Autowired
-    private UserService userService;
+    private JdbcUserServiceIMP jdbcUserServiceIMP;
     private Logger logger= LoggerFactory.getLogger(UserController.class);
 
 
@@ -25,7 +24,7 @@ public class UserUpdateApiController {
     public void updateDay(@PathVariable("user_id") String user_id, @RequestBody UpdateUserDay userDay){
         //업데이트 함수호춯
         logger.info("update"+user_id+userDay.getDay_7());
-        userService.updateDay(user_id,userDay);
+        jdbcUserServiceIMP.updateDay(user_id,userDay);
     }
 
     //setting 넣기
@@ -33,7 +32,7 @@ public class UserUpdateApiController {
     public void updateSetting(@PathVariable ("user_id") String user_id,@RequestBody Setting setting){
         //업데이트 함수호춯
         logger.info("update"+user_id+setting);
-        userService.updateSetting(user_id,setting.getSetting());
+        jdbcUserServiceIMP.updateSetting(user_id,setting.getSetting());
     }
 
     @Data

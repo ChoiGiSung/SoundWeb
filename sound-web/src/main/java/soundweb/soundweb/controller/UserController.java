@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import soundweb.soundweb.Dto.UserEntity;
-import soundweb.soundweb.Service.UserService;
+import soundweb.soundweb.Dto.UserDto;
+import soundweb.soundweb.jdbcServiceIMP.JdbcUserServiceIMP;
 
 import java.util.List;
 
@@ -17,12 +17,12 @@ public class UserController {
     Logger logger= LoggerFactory.getLogger(UserController.class);
 
     @Autowired
-    private UserService userService;
+    private JdbcUserServiceIMP jdbcUserServiceIMP;
 
     @RequestMapping("/")
     public String home(Model model){
        // userService.join();
-        List<UserEntity> users = userService.findAllUser();
+        List<UserDto> users = jdbcUserServiceIMP.findAllUser();
        // logger.info(users+"");
         model.addAttribute("User",users);
         return "/Home/main";

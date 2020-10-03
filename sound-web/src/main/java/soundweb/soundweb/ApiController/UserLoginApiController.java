@@ -6,8 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-import soundweb.soundweb.Dto.UserEntity;
-import soundweb.soundweb.Service.UserService;
+import soundweb.soundweb.jdbcServiceIMP.JdbcUserServiceIMP;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,14 +15,14 @@ import java.util.stream.Collectors;
 public class UserLoginApiController {
 
     @Autowired
-    private UserService userService;
+    private JdbcUserServiceIMP jdbcUserServiceIMP;
 
     //findById 아이디를 가지고 찾기 login기능 //틀릴경우 줄 error메세지도 있어야함
     @PostMapping("/api/login/{user_id}/{user_pwd}")
     public Result findById(@PathVariable("user_id")String user_id,
                                              @PathVariable("user_pwd")String user_pwd){
 
-        List<UserEntity> findUser = userService.login(user_id,user_pwd);//영속성 엔티티이므로 lazy초기화를 해야함
+        List<soundweb.soundweb.Dto.UserDto> findUser = jdbcUserServiceIMP.login(user_id,user_pwd);//영속성 엔티티이므로 lazy초기화를 해야함
         List<UserDto> result = findUser.stream() //lazy초기화
                 .map(u -> new UserDto(u.getUser_id(),u.getUser_seting()))
                 .collect(Collectors.toList());
@@ -38,7 +37,7 @@ public class UserLoginApiController {
     //회원가입
     @PostMapping("/api/join/{user_id}/{user_pwd}")
     public JoinResult joinUser(@PathVariable("user_id")String user_id,@PathVariable("user_pwd")String user_pwd){
-        String result = userService.joinUser(user_id, user_pwd);
+        String result = jdbcUserServiceIMP.joinUser(user_id, user_pwd);
 
         return new JoinResult(result);
 
