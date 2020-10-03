@@ -26,7 +26,9 @@ public class UserRepository {
 
     //유저 여러명 찾기
     public List<UserEntity> findUsers(String userName){
-        List<UserEntity> findUsers = em.createQuery("select m from UserEntity m", UserEntity.class).getResultList();
+        List<UserEntity> findUsers = em.createQuery("select m from UserEntity m where user_id =:userName", UserEntity.class)
+                .setParameter("userName",userName)
+                .getResultList();
         return findUsers;
     }
 
