@@ -22,9 +22,10 @@ public class UserEntity {
     @Column(name = "user_seting")
     private String userSetting;
 
-    public UserEntity() {
+    protected UserEntity() {
     }
 
+    //생성 메소드
     public UserEntity(String userName, String userPwd, DayEmbed dayEmbed, String userSetting) {
         this.userName = userName;
         this.userPwd = userPwd;

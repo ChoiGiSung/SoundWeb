@@ -1,9 +1,12 @@
 package soundweb.soundweb.Domain.Entity;
 
+import lombok.Getter;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
+@Getter
 public class DayEmbed {
     @Column(name = "day_1")
     private String day1;
@@ -20,7 +23,7 @@ public class DayEmbed {
     @Column(name = "day_7")
     private String day7;
 
-    public DayEmbed() {
+    protected DayEmbed() {
     }
 
     public DayEmbed(String day1, String day2, String day3, String day4, String day5, String day6, String day7) {

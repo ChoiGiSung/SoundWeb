@@ -52,7 +52,7 @@ class JdbcUserServiceTest {
         userService.join(userEntity1);
 
         //than
-        
+
         //아 j유닛4 에서는 @test옆에 추가 기능 있었는데
         IllegalStateException thrown = assertThrows(IllegalStateException.class, () -> userService.join(userEntity2));
         assertEquals("이미있는 회원", thrown.getMessage());

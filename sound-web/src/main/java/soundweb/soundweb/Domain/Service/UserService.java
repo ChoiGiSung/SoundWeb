@@ -8,6 +8,7 @@ import soundweb.soundweb.Domain.Entity.UserEntity;
 import soundweb.soundweb.Domain.Repositoty.UserRepository;
 
 import java.util.List;
+import java.util.ListIterator;
 
 @Service
 @Transactional
@@ -30,11 +31,11 @@ public class UserService {
 
         return userEntity.getUserName();
     }
-
+    //이름 같은게 있는지 검사
     public void nameTest(String userName){
 
         List<UserEntity> findUsers = userRepository.findUsers(userName);
-
+        loggerFactory.info("회원검사 select");
         if(!findUsers.isEmpty()){
             for(UserEntity a:findUsers){
                 loggerFactory.info(a.getUserName());
@@ -42,4 +43,11 @@ public class UserService {
             throw new IllegalStateException("이미있는 회원");
         }
     }
+
+    //유저 한명 조회
+    @Transactional(readOnly = true)
+    public UserEntity findUserOne(String userName){
+        return userRepository.findUserOne(userName);
+    }
+
 }
