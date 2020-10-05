@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 public class BoardEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     //다대일 관계 양방향은 안만들었다

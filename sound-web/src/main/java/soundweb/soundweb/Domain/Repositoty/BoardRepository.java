@@ -5,6 +5,7 @@ import soundweb.soundweb.Domain.Entity.BoardEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @Repository
 public class BoardRepository {
@@ -23,5 +24,11 @@ public class BoardRepository {
         BoardEntity findPost = entityManager.find(BoardEntity.class, id);
         return findPost;
     }
+
     //게시글 전부 조회
+    public List<BoardEntity> findPostAll(){
+        List<BoardEntity> findPostAll = entityManager.createQuery("select b from BoardEntity b", BoardEntity.class)
+                .getResultList();
+        return findPostAll;
+    }
 }

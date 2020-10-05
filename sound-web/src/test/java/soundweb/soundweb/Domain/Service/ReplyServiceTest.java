@@ -42,57 +42,61 @@ class ReplyServiceTest {
 
 
 
-    @Test
-    void writeReply() {
-        //given
-        UserEntity userEntity1=new UserEntity("user1","123",new DayEmbed("0","0","0","0","0","0","0"),"sd");
-        BoardEntity boardEntity=new BoardEntity("123",userEntity1,"타이틀","내용");
-        ReplyEntity replyEntity=new ReplyEntity(boardEntity,userEntity1,"123","내용");
+//    @Test
+//    void writeReply() {
+//        //given
+//        UserEntity userEntity1=new UserEntity("user2","123",new DayEmbed("0","0","0","0","0","0","0"),"sd");
+//        BoardEntity boardEntity=new BoardEntity("123",userEntity1,"타이틀","내용");
+//
+//        String userId = userService.join(userEntity1);
+//        Long boardId = boardService.WritePost(boardEntity);
+//
+//        //when
+//        Long replyId = replyService.WriteReply(userId, boardId);
+//
+//        //than
+//        ReplyEntity findReply = replyService.ReadReply(replyId);
+//        Assertions.assertEquals("내용",findReply.getContent());
+//        Assertions.assertEquals("user2",findReply.getUserName().getUserName());
+//    }
 
-        //when
-        replyService.WriteReply(replyEntity);
-
-        //than
-        Assertions.assertEquals(replyEntity,replyService.ReadReply(replyEntity.getId()));
-    }
-
-    @Test
-    void readReply() {
-        //user는 처음부터 id값을 줘서 persist하고 board는 처음에 id값 없이 persist한다
-        //그러서 flush하기전까지는 id가 없다
-
-        UserEntity userEntity1=new UserEntity("user5","123",new DayEmbed("0","0","0","0","0","0","0"),"sd");
-        BoardEntity boardEntity=new BoardEntity("123",userEntity1,"타이틀","내용");
-        ReplyEntity replyEntity=new ReplyEntity(boardEntity,userEntity1,"123","내용");
-
-
+//    @Test
+//    void readReply() {
+//        //user는 처음부터 id값을 줘서 persist하고 board는 처음에 id값 없이 persist한다
+//        //그러서 flush하기전까지는 id가 없다
+//
+//        UserEntity userEntity1=new UserEntity("user5","123",new DayEmbed("0","0","0","0","0","0","0"),"sd");
+//        BoardEntity boardEntity=new BoardEntity("123",userEntity1,"타이틀","내용");
+//        ReplyEntity replyEntity=new ReplyEntity(boardEntity,userEntity1,"123","내용");
+//
+//
 //        userService.join(userEntity1);
 //        boardService.WritePost(boardEntity);
-        // entityManager.flush();
-       // logger.info(boardService.ReadPost(findBoardId).getUserName().getUserName());
-        replyService.WriteReply(replyEntity);
-        replyService.ReadReply(replyEntity.getId());
+//        // entityManager.flush();
+//        //logger.info(boardService.ReadPost(findBoardId).getUserName().getUserName());
+//        replyService.WriteReply(replyEntity);
+//        replyService.ReadReply(replyEntity.getId());
 //
-        Assertions.assertEquals(replyEntity,replyService.ReadReply(replyEntity.getId()));
-
-    }
-
-
-    @Test
-    void readReplyAll() {
-        UserEntity userEntity1=new UserEntity("user2","123",new DayEmbed("0","0","0","0","0","0","0"),"sd");
-        BoardEntity boardEntity=new BoardEntity("123",userEntity1,"타이틀","내용");
-        ReplyEntity replyEntity=new ReplyEntity(boardEntity,userEntity1,"123","내용");
+//        Assertions.assertEquals(replyEntity,replyService.ReadReply(replyEntity.getId()));
+//
+//    }
 
 
-        userService.join(userEntity1);
-        boardService.WritePost(boardEntity);
-        replyService.WriteReply(replyEntity);
-
-        List<ReplyEntity> replyAll = replyService.ReadReplyAll();
-        for(ReplyEntity a:replyAll){
-            logger.info(a.getId()+":"+a.getConNum().getId());
-        }
-
-    }
+//    @Test
+//    void readReplyAll() {
+//        UserEntity userEntity1=new UserEntity("user2","123",new DayEmbed("0","0","0","0","0","0","0"),"sd");
+//        BoardEntity boardEntity=new BoardEntity("123",userEntity1,"타이틀","내용");
+//        ReplyEntity replyEntity=new ReplyEntity(boardEntity,userEntity1,"123","내용");
+//
+//
+//        userService.join(userEntity1);
+//        boardService.WritePost(boardEntity);
+//        replyService.WriteReply(replyEntity);
+//
+//        List<ReplyEntity> replyAll = replyService.ReadReplyAll();
+//        for(ReplyEntity a:replyAll){
+//            logger.info(a.getId()+":"+a.getConNum().getId());
+//        }
+//
+//    }
 }
