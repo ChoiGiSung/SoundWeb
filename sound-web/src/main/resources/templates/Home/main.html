@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>하하</title>
@@ -10,13 +10,15 @@
 <!--            <td th:text="${user.user_id}"></td>-->
 <!--        </tr>-->
 <!--    </table>-->
-    <div>
+    <div id="div1">
         <br>
         <hr>
-        <form method="post">
+        <h2 th:text="${errorMessage}"></h2>
+
+        <form method="post" action="login">
             <div>
-                <input type="text" placeholder="ID"><br>
-                <input type="password" placeholder="PWD"><br>
+                <input type="text" placeholder="ID" name="userId"><br>
+                <input type="password" placeholder="PWD" name="userPassword"><br>
             </div>
             <input type="submit" value="보내기">
             <hr>
@@ -27,5 +29,22 @@
 
 
 
+
+<script type="text/javascript">
+        var result='${errorMessage}';
+        var para= document.createElement("p");
+        if(result =='암호가 틀림'){
+            alert("암호틀림");
+        }
+
+        var node=document.createTextNode(result);
+        para.appendChild(node);
+        var element=document.getElementById("div1");
+        element.appendChild(para);
+
+
+</script>
+
 </body>
+
 </html>

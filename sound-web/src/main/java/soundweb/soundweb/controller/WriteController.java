@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import soundweb.soundweb.Domain.Entity.BoardEntity;
 import soundweb.soundweb.Domain.Entity.DTO.WriteDtoForm;
 import soundweb.soundweb.Domain.Repositoty.BoardRepository;
@@ -33,19 +35,36 @@ public class WriteController {
         this.userService = userService;
     }
 
+    
+    //s07일 여기 로그인이 안되있으면 버튼 안보이게
     //글쓰는곳으로
     @GetMapping("/write")
-    public String writePostPage(){
+    public String writePostPage(@SessionAttribute(value = "userName",required = false)String userId,
+                                RedirectAttributes redirectAttributes){
+        logger.info(userId+"글쓰기 get");
+        if (userId==null){
+            redirectAttributes.addFlashAttribute("errorMessage","로그인 하라고");
+        }
         return "/writePost";
     }
 
     //글쓰기 완료시
     @PostMapping("/write")
-    public String writePost(WriteDtoForm writeDtoForm){
+    public String writePost(WriteDtoForm writeDtoForm,
+                            @SessionAttribute(value = "userName",required = false) String userId,
+                            HttpServletRequest request,
+                            RedirectAttributes redirectAttributes){
         logger.info(writeDtoForm.getTitle()+"내용"+writeDtoForm.getContent());
-        
+
+
         //세션을 이용한 로그인 아이디 넘겨주는 작업 필요
-        boardService.WritePost("user1",null,writeDtoForm.getTitle(),writeDtoForm.getContent());
+        if(userId==null){
+            redirectAttributes.addFlashAttribute("errorMessage","로그인 하라고");
+            return "redirect:/login";
+        }
+        String userid=userId;
+        //글쓰기 pwd 체크 만들어야함
+        boardService.WritePost(userid,null,writeDtoForm.getTitle(),writeDtoForm.getContent());
         return "/Home/main";
     }
 
