@@ -42,8 +42,11 @@ public class WriteController {
     public String writePostPage(@SessionAttribute(value = "userName",required = false)String userId,
                                 RedirectAttributes redirectAttributes){
         logger.info(userId+"글쓰기 get");
+        
+        //아이디값 없으면 로그인 화면으로
         if (userId==null){
             redirectAttributes.addFlashAttribute("errorMessage","로그인 하라고");
+            return "redirect:/login";
         }
         return "/writePost";
     }
