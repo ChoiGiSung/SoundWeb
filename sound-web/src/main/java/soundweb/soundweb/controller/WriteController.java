@@ -68,7 +68,7 @@ public class WriteController {
         String userid=userId;
         //글쓰기 pwd 체크 만들어야함
         boardService.WritePost(userid,null,writeDtoForm.getTitle(),writeDtoForm.getContent());
-        return "/Home/main";
+        return "redirect:/allpost";
     }
 
     //게시글 목록

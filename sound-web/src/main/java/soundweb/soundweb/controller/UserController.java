@@ -21,13 +21,22 @@ public class UserController {
     @Autowired
     private JdbcUserServiceIMP jdbcUserServiceIMP;
 
+    @RequestMapping("/")
+    public String home(){
+        return "redirect:/allpost";
+    }
+
+
+
     //로그인
     @GetMapping("/login")
-    public String home(Model model){
+    public String Getlogin(Model model){
        // userService.join();
         //List<UserDto> users = jdbcUserServiceIMP.findAllUser();
        // logger.info(users+"");
        // model.addAttribute("User",users);
+        
+        //이미 세션에 로그인 되있으면 alert 주기
         return "/Home/main";
     }
 
@@ -45,7 +54,7 @@ public class UserController {
         }else {
             logger.info("로그인성공");
             session.setAttribute("userName",userId);
-            return "redirect:/write";
+            return "redirect:/allpost";
             //로그인 성고하면 글쓰기 페이지
         }
     }
