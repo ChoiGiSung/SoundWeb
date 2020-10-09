@@ -3,14 +3,15 @@ package soundweb.soundweb.controller;
 import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import soundweb.soundweb.Domain.Entity.BoardEntity;
+import soundweb.soundweb.Domain.Entity.DTO.Pagination;
 import soundweb.soundweb.Domain.Entity.DTO.WriteDtoForm;
 import soundweb.soundweb.Domain.Repositoty.BoardRepository;
 import soundweb.soundweb.Domain.Repositoty.UserRepository;
@@ -71,17 +72,22 @@ public class WriteController {
         return "redirect:/allpost";
     }
 
+
+
     //게시글 목록
     @GetMapping("/allpost")
     public String AllPost(Model model,
-                         // HttpServletRequest httpServletRequest,
+                          // HttpServletRequest httpServletRequest,
                           @CookieValue(value = "count",defaultValue ="0",required = true )String value,
-                          HttpServletResponse httpServletResponse)
+                          HttpServletResponse httpServletResponse,
+                          @RequestParam(defaultValue = "1")int page
+                         )
     {
 
-        List<BoardEntity> findPostALl = boardService.ReadPostAll();
-        model.addAttribute("AllPost",findPostALl);
+//        List<BoardEntity> findPostALl = boardService.ReadPostAll();
+//        model.addAttribute("AllPost",findPostALl);
 
+        //방문수 쿠키
         //쿠키함수
 //        String value=null;
 //        boolean find =false;
@@ -109,9 +115,24 @@ public class WriteController {
         cookie.setMaxAge(60*60*24*365);
         cookie.setPath("/");
         httpServletResponse.addCookie(cookie);
-
         model.addAttribute("cookieCount",value);
 
+        //페이징
+        //총 게시물 수
+        int totalListCnt=boardService.getAllPostCnt();
+
+        //생성인자로 총 게시물 수, 현재 페이지를 전달
+        Pagination pagination=new Pagination(totalListCnt,page);
+
+        //DB 탐색 시작
+        int startIndex=pagination.getStartIndex();
+        //페이징 당 보여지는 게시글의 최대 개수
+        int pageSize=pagination.getPageSize();
+
+        List<BoardEntity> boardList=boardService.ReadPageList(startIndex,pageSize);
+
+        model.addAttribute("boardList",boardList);
+        model.addAttribute("pagination",pagination);
 
         return "/AllPost";
     }

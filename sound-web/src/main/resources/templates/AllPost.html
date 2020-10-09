@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymleaf.org">
+<html 	lang="en"
+         xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>게시판</title>
@@ -20,7 +21,7 @@
                 <th>조회수</th>
                 <th>비밀글 여부</th>
             </tr>
-            <tr th:each="b:${AllPost}">
+            <tr th:each="b:${boardList}">
                 <td th:text="${b.id}"></td>
                 <td th:text="${b.title}"></td>
                 <td th:text="${b.userName.getUserName()}"></td>
@@ -29,6 +30,39 @@
                 <td th:text="${b.lock_post}"></td>
             </tr>
         </table>
+    </div>
+    <div>
+        <!--페이징 부분-->
+        <nav>
+            <ul>
+                <li>
+                    <a  th:href="@{/?page=1}" aria-label="Previous">
+                        <span aria-hidden="true">처음</span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/?page={page} (page = ${pagination.prevBlock})}">
+                        <span aria-hidden="true">이전</span>
+                    </a>
+                </li>
+                <th:block th:with="start = ${pagination.startPage}, end = ${pagination.endPage}">
+                    <li th:with="start = ${pagination.startPage}, end = ${pagination.endPage}"
+                        th:each="pageButton : ${#numbers.sequence(start, end)}">
+                        <a th:href="@{/?page={page} (page = ${pageButton})}" th:text=${pageButton}></a>
+                    </li>
+                </th:block>
+                <li>
+                    <a class="page-link" th:href="@{?page={page} (page = ${pagination.nextBlock})}">
+                        <span aria-hidden="true">다음</span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{?page={page} (page = ${pagination.totalPageCnt})}">
+                        <span aria-hidden="true">끝</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </div>
 </body>
 </html>

@@ -1,5 +1,8 @@
 package soundweb.soundweb.Domain.Service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import soundweb.soundweb.Domain.Entity.BoardEntity;
@@ -45,4 +48,16 @@ public class BoardService {
         List<BoardEntity> findPostAll = boardRepository.findPostAll();
         return findPostAll;
     }
+
+    //페이징 읽어오기
+    public List<BoardEntity> ReadPageList(int start,int pageSize){
+        return boardRepository.findListPaging(start,pageSize);
+    }
+
+    //총 게시글 수 읽어오기
+    public int getAllPostCnt(){
+        return boardRepository.findAllCnt();
+    }
+
+
 }

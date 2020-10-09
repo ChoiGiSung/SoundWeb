@@ -31,4 +31,17 @@ public class BoardRepository {
                 .getResultList();
         return findPostAll;
     }
+
+    //페이징
+    public List<BoardEntity> findListPaging(int startIndex,int pageSize){
+        return entityManager.createQuery("select b from BoardEntity b",BoardEntity.class)
+                .setFirstResult(startIndex)
+                .setMaxResults(pageSize)
+                .getResultList();
+    }
+
+    //게시글 수 읽어오기
+    public int findAllCnt(){
+        return ((Number)entityManager.createQuery("select count(*) from BoardEntity").getSingleResult()).intValue();
+    }
 }
