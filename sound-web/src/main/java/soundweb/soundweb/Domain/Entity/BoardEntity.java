@@ -27,6 +27,8 @@ public class BoardEntity {
 
     private LocalDateTime date;
 
+
+
     private int hit;
 
     @Enumerated(EnumType.STRING)
@@ -43,5 +45,12 @@ public class BoardEntity {
         this.date = LocalDateTime.now();
         this.hit = 0;
         this.lock_post = LockStatus.UNLOCK;
+    }
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

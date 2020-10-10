@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 읽기</title>
+</head>
+<body>
+    <div th:object="${onePost}">
+        <p>
+            제목:<span th:text="*{title}"></span>
+        </p>
+        <p>
+            내용:<span th:text="*{content}"></span>
+        </p>
+        <!--수정 기능 업데이트-->
+        <a th:if="${check=='true'}"
+           href="#"
+           th:href="'javascript:update('+*{id}+')'"
+        >수정</a>
+        <a th:if="${check=='true'}"
+           href="#"
+           th:href="'javascript:deletePost('+*{id}+')'">
+            삭제</a>
+
+    </div>
+</body>
+<script>
+    function update(id){
+        var form = document.createElement("form");
+        form.setAttribute("method","post");
+        form.setAttribute("action","/update/"+id+"/post");
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
+<script>
+    function deletePost(id){
+        var form = document.createElement("form");
+        form.setAttribute("method","post");
+        form.setAttribute("action","/delete/"+id);
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
+</html>

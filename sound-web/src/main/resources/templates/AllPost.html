@@ -22,13 +22,18 @@
                 <th>비밀글 여부</th>
             </tr>
             <tr th:each="b:${boardList}">
+
                 <td th:text="${b.id}"></td>
-                <td th:text="${b.title}"></td>
+                <td>
+                    <a th:href="@{?post={bookId} (bookId=${b.id})}" th:text="${b.title}"></a>
+                </td>
                 <td th:text="${b.userName.getUserName()}"></td>
                 <td th:text="${b.date}"></td>
                 <td th:text="${b.hit}"></td>
                 <td th:text="${b.lock_post}"></td>
             </tr>
+
+
         </table>
     </div>
     <div>
@@ -41,18 +46,20 @@
                     </a>
                 </li>
                 <li>
-                    <a th:href="@{/?page={page} (page = ${pagination.prevBlock})}">
+                    <a th:href="@{?page={page} (page = ${pagination.prevBlock})}">
                         <span aria-hidden="true">이전</span>
                     </a>
                 </li>
+
                 <th:block th:with="start = ${pagination.startPage}, end = ${pagination.endPage}">
                     <li th:with="start = ${pagination.startPage}, end = ${pagination.endPage}"
                         th:each="pageButton : ${#numbers.sequence(start, end)}">
-                        <a th:href="@{/?page={page} (page = ${pageButton})}" th:text=${pageButton}></a>
+                        <a th:href="@{?page={page} (page = ${pageButton})}" th:text=${pageButton}></a>
                     </li>
                 </th:block>
                 <li>
-                    <a class="page-link" th:href="@{?page={page} (page = ${pagination.nextBlock})}">
+
+                    <a th:href="@{?page={page} (page = ${pagination.nextBlock})}">
                         <span aria-hidden="true">다음</span>
                     </a>
                 </li>

@@ -42,6 +42,7 @@ public class Pagination {
 
     /** 12. 다음 블럭의 시작 페이지 **/
     private int nextBlock;
+
     public Pagination(int totalListCnt, int page) {
 
         // 총 게시물 수와 현재 페이지를 Controller로 부터 받아온다.

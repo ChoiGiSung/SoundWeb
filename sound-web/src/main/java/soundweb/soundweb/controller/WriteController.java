@@ -18,9 +18,7 @@ import soundweb.soundweb.Domain.Repositoty.UserRepository;
 import soundweb.soundweb.Domain.Service.BoardService;
 import soundweb.soundweb.Domain.Service.UserService;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.util.List;
 
 @Controller
@@ -80,9 +78,25 @@ public class WriteController {
                           // HttpServletRequest httpServletRequest,
                           @CookieValue(value = "count",defaultValue ="0",required = true )String value,
                           HttpServletResponse httpServletResponse,
-                          @RequestParam(defaultValue = "1")int page
+                          @SessionAttribute(value = "userName",required = false) String userId,
+                          @RequestParam(name ="page",defaultValue = "1")int page,
+                          @RequestParam(name = "post",required = false)Integer postNum
                          )
     {
+        logger.info(page+"dd");
+        if(postNum!=null){
+            logger.info(postNum+"dd");// 게시글 번호가 있으니 거기로 가자
+            BoardEntity findOne = boardService.ReadPost(postNum.longValue());
+
+            if(userId!=null && userId.equals(findOne.getUserName().getUserName())){
+                model.addAttribute("check","true");
+                logger.info("수정 가능");
+            }
+
+            model.addAttribute("onePost",findOne);
+            return "/readPostOne";
+        }
+
 
 //        List<BoardEntity> findPostALl = boardService.ReadPostAll();
 //        model.addAttribute("AllPost",findPostALl);
@@ -122,18 +136,62 @@ public class WriteController {
         int totalListCnt=boardService.getAllPostCnt();
 
         //생성인자로 총 게시물 수, 현재 페이지를 전달
-        Pagination pagination=new Pagination(totalListCnt,page);
+        Pagination pagination = new Pagination(totalListCnt, page);
 
         //DB 탐색 시작
-        int startIndex=pagination.getStartIndex();
+        int startIndex = pagination.getStartIndex();
         //페이징 당 보여지는 게시글의 최대 개수
-        int pageSize=pagination.getPageSize();
+        int pageSize = pagination.getPageSize();
 
         List<BoardEntity> boardList=boardService.ReadPageList(startIndex,pageSize);
+        //pagination.setStartPage(1);
+        pagination.setPrevBlock(page-1);
+        pagination.setNextBlock(page+1);
+        pagination.setBlock(page);
 
         model.addAttribute("boardList",boardList);
         model.addAttribute("pagination",pagination);
 
         return "/AllPost";
     }
+
+    //업데이트 버튼 눌러서 오는곳
+    @PostMapping("/update/{id}/post")
+    public String updatePost(@PathVariable("id") Long postId,
+                             @SessionAttribute(value = "userName",required =false) String userId,
+                             RedirectAttributes redirectAttributes,
+                             Model model){
+
+        if(userId ==null){
+            redirectAttributes.addFlashAttribute("errorMessage","로그인해");
+            return "redirect:/login";
+        }
+        BoardEntity findPost = boardService.ReadPost(postId);
+        model.addAttribute("findPost",findPost);
+
+        logger.info("업데이트");
+        //업데이트에서 수정 완료를 누르면 내영 set
+        logger.info(postId+"");
+
+        return "/updatePost";
+    }
+
+    //업데이트 완료
+    @GetMapping("/gogo")
+    public String updatePost(WriteDtoForm writeDtoForm,
+                             @RequestParam(name = "Id",required = false)Long Id){
+        logger.info("업데이트 gogo"+Id);
+
+        boardService.updatePost(writeDtoForm.getTitle(),writeDtoForm.getContent(),Id);
+        return "redirect:/allpost";
+    }
+
+    //삭제
+    @PostMapping("/delete/{id}")
+    public String deletePost(@PathVariable(name = "id")Long id){
+        logger.info("삭제 gogo"+id);
+        boardService.removePost(id);
+        return "redirect:/allpost";
+    }
+
 }

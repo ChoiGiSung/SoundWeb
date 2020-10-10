@@ -10,6 +10,9 @@ import soundweb.soundweb.Domain.Entity.LockStatus;
 import soundweb.soundweb.Domain.Entity.UserEntity;
 import soundweb.soundweb.Domain.Repositoty.BoardRepository;
 import soundweb.soundweb.Domain.Repositoty.UserRepository;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 import java.time.LocalDateTime;
@@ -17,6 +20,10 @@ import java.time.LocalDateTime;
 @Service
 @Transactional
 public class BoardService {
+
+    @PersistenceContext
+    private EntityManager entityManager;
+
 
     //생성자 오토와이어
     private BoardRepository boardRepository;
@@ -59,5 +66,16 @@ public class BoardService {
         return boardRepository.findAllCnt();
     }
 
+    //게시글 업데이트
+    public void updatePost(String title,String content,Long Id){
+        BoardEntity findPost = ReadPost(Id);
+        findPost.setTitle(title);
+        findPost.setContent(content);
+    }
 
+    //게시글 삭제
+    public void removePost(Long id){
+        BoardEntity findPost = ReadPost(id);
+        entityManager.remove(findPost);
+    }
 }

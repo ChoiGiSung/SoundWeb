@@ -44,4 +44,7 @@ public class BoardRepository {
     public int findAllCnt(){
         return ((Number)entityManager.createQuery("select count(*) from BoardEntity").getSingleResult()).intValue();
     }
+
+
+
 }
