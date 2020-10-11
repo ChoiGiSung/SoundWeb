@@ -2,6 +2,8 @@ package soundweb.soundweb.Domain.Entity.DTO;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Getter
 @Setter
@@ -44,7 +46,6 @@ public class Pagination {
     private int nextBlock;
 
     public Pagination(int totalListCnt, int page) {
-
         // 총 게시물 수와 현재 페이지를 Controller로 부터 받아온다.
 
         // 총 게시물 수	- totalListCnt
@@ -69,7 +70,6 @@ public class Pagination {
         // 한 블럭의 최대 개수를 총  페이지의 수 * 1.0로 나누어주고 올림 해준다.
         // 총 블럭 수를 구할 수 있다.
         setTotalBlockCnt((int) Math.ceil(totalPageCnt * 1.0 / blockSize));
-
 
         /** 4. 현재 블럭 **/
         // 현재 페이지 * 1.0을 블록의 최대 개수로 나누어주고 올림한다.

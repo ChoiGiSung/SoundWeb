@@ -4,49 +4,70 @@
 <head>
     <meta charset="UTF-8">
     <title>게시판</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <style>
+        .tb1{
+            text-align: center;
+        }
+        .divlog{
+            text-align: right;
+            margin: 10pt;
+        }
+
+        .ul1{
+              width: 300px;
+              margin-left: auto;
+              margin-right: auto;
+        }
+    </style>
 </head>
 <body>
 
     <div>
-        방문수:<p1 th:text="${cookieCount}">쿠키</p1><br>
-        <a href="/login" >로그인</a>
-        <a href="/write" >글쓰기</a>
+        <div class="divlog">
+            방문수:<p1 th:text="${cookieCount}">쿠키</p1><br>
+            <a href="/login" class="btn btn-lg btn-primary">로그인</a>
+            <a href="/write" class="btn btn-secondary btn-lg">글쓰기</a>
+        </div>
+        <table class="table tb1">
+            <thead class="thead-dark">
+                <tr>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>작성일자</th>
+                    <th>조회수</th>
+                    <th>비밀글 여부</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="b:${boardList}">
 
-        <table>
-            <tr>
-                <th>번호</th>
-                <th>제목</th>
-                <th>작성자</th>
-                <th>작성일자</th>
-                <th>조회수</th>
-                <th>비밀글 여부</th>
-            </tr>
-            <tr th:each="b:${boardList}">
-
-                <td th:text="${b.id}"></td>
-                <td>
-                    <a th:href="@{?post={bookId} (bookId=${b.id})}" th:text="${b.title}"></a>
-                </td>
-                <td th:text="${b.userName.getUserName()}"></td>
-                <td th:text="${b.date}"></td>
-                <td th:text="${b.hit}"></td>
-                <td th:text="${b.lock_post}"></td>
-            </tr>
-
-
+                    <td th:text="${b.id}"></td>
+                    <td>
+                        <a th:href="@{?post={bookId} (bookId=${b.id})}" th:text="${b.title}"></a>
+                    </td>
+                    <td th:text="${b.userName.getUserName()}"></td>
+                    <td th:text="${b.date}"></td>
+                    <td th:text="${b.hit}"></td>
+                    <td th:text="${b.lock_post}"></td>
+                </tr>
+            </tbody>
         </table>
     </div>
     <div>
         <!--페이징 부분-->
-        <nav>
-            <ul>
-                <li>
-                    <a  th:href="@{/?page=1}" aria-label="Previous">
+        <nav aria-label="...">
+            <ul class="pagination ul1">
+                <li class="page-item disabled">
+                    <a  th:href="@{/?page=1}"
+                        class="page-link">
                         <span aria-hidden="true">처음</span>
                     </a>
                 </li>
-                <li>
-                    <a th:href="@{?page={page} (page = ${pagination.prevBlock})}">
+                <li class="page-item">
+                    <a th:href="@{?page={page} (page = ${pagination.prevBlock})}"
+                       class="page-link">
                         <span aria-hidden="true">이전</span>
                     </a>
                 </li>
@@ -54,22 +75,26 @@
                 <th:block th:with="start = ${pagination.startPage}, end = ${pagination.endPage}">
                     <li th:with="start = ${pagination.startPage}, end = ${pagination.endPage}"
                         th:each="pageButton : ${#numbers.sequence(start, end)}">
-                        <a th:href="@{?page={page} (page = ${pageButton})}" th:text=${pageButton}></a>
+                        <a th:href="@{?page={page} (page = ${pageButton})}" th:text=${pageButton}
+                           class="page-link"></a>
                     </li>
                 </th:block>
-                <li>
+                <li class="page-item">
 
-                    <a th:href="@{?page={page} (page = ${pagination.nextBlock})}">
+                    <a th:href="@{?page={page} (page = ${pagination.nextBlock})}"
+                       class="page-link">
                         <span aria-hidden="true">다음</span>
                     </a>
                 </li>
-                <li>
-                    <a th:href="@{?page={page} (page = ${pagination.totalPageCnt})}">
+                <li class="page-item">
+                    <a th:href="@{?page={page} (page = ${pagination.totalPageCnt})}"
+                       class="page-link">
                         <span aria-hidden="true">끝</span>
                     </a>
                 </li>
             </ul>
         </nav>
+
     </div>
 </body>
 </html>

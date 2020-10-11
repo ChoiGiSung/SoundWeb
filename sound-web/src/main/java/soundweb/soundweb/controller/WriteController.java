@@ -137,6 +137,7 @@ public class WriteController {
 
         //생성인자로 총 게시물 수, 현재 페이지를 전달
         Pagination pagination = new Pagination(totalListCnt, page);
+        logger.info(pagination.getPage()+":"+pagination.getBlockSize()+":"+pagination.getBlock());
 
         //DB 탐색 시작
         int startIndex = pagination.getStartIndex();
@@ -144,10 +145,6 @@ public class WriteController {
         int pageSize = pagination.getPageSize();
 
         List<BoardEntity> boardList=boardService.ReadPageList(startIndex,pageSize);
-        //pagination.setStartPage(1);
-        pagination.setPrevBlock(page-1);
-        pagination.setNextBlock(page+1);
-        pagination.setBlock(page);
 
         model.addAttribute("boardList",boardList);
         model.addAttribute("pagination",pagination);

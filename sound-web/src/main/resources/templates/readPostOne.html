@@ -3,23 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>게시글 읽기</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <style>
+        .dv1{
+            text-align: -webkit-center;
+            margin: 15pt;
+        }
+        .ptitle{
+            width:500pt;
+            height: 50pt;
+        }
+        .p_content{
+            width: 500pt;
+            height: 400pt;
+        }
+    </style>
 </head>
 <body>
-    <div th:object="${onePost}">
-        <p>
+    <div th:object="${onePost}" class="dv1">
+        <p class="border ptitle">
             제목:<span th:text="*{title}"></span>
         </p>
-        <p>
+        <p class="border p_content">
             내용:<span th:text="*{content}"></span>
         </p>
         <!--수정 기능 업데이트-->
         <a th:if="${check=='true'}"
            href="#"
            th:href="'javascript:update('+*{id}+')'"
+           class="btn btn-primary btn-lg"
         >수정</a>
         <a th:if="${check=='true'}"
            href="#"
-           th:href="'javascript:deletePost('+*{id}+')'">
+           th:href="'javascript:deletePost('+*{id}+')'"
+           class="btn btn-secondary btn-lg">
             삭제</a>
 
     </div>

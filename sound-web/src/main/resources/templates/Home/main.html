@@ -3,6 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>하하</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <!-- Custom styles for this template -->
+    <style>
+        .div1{
+            text-align: center;
+        }
+        .inputlogin{
+            width:150pt;
+            display: inline;
+            margin: 10pt;
+        }
+
+    </style>
 </head>
 <body>
 <!--    <table>-->
@@ -10,17 +23,19 @@
 <!--            <td th:text="${user.user_id}"></td>-->
 <!--        </tr>-->
 <!--    </table>-->
-    <div id="div1">
+    <div class="mx-auto div1">
         <br>
         <hr>
         <h2 th:text="${errorMessage}"></h2>
 
         <form method="post" action="login">
             <div>
-                <input type="text" placeholder="ID" name="userId"><br>
-                <input type="password" placeholder="PWD" name="userPassword"><br>
+                <input type="text" placeholder="ID" name="userId"
+                       class="form-control inputlogin"><br>
+                <input type="password" placeholder="PWD" name="userPassword"
+                       class="form-control inputlogin"><br>
             </div>
-            <input type="submit" value="보내기">
+            <button type="submit" class="btn btn-dark">로그인</button>
             <hr>
 
         </form>
@@ -42,8 +57,8 @@
         var element=document.getElementById("div1");
         element.appendChild(para);
 
-
 </script>
+
 
 </body>
 

@@ -3,15 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>업데이트</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <style>
+        .dv1{
+            text-align: -webkit-center;
+            margin: 15pt;
+        }
+        .input_title{
+            width:500pt;
+            height: 50pt;
+            margin: 10pt;
+        }
+        .textarea_content{
+            width: 500pt;
+            height: 400pt;
+            margin: 15pt;
+        }
+    </style>
 </head>
 <body>
-    <div >
+    <div class="dv1">
         <form action="/gogo" method="get" th:object="${findPost}">
-            <input type="text" th:value="*{title}" name="title">
-            <textarea th:text="*{content}" name="content">
+            <input type="text" th:value="*{title}" name="title" class="input_title"><br>
+            <textarea th:text="*{content}" name="content" class="textarea_content">
             </textarea>
             <input type="hidden" th:value="*{id}" name="Id">
-            <button type="submit">수정 완료</button>
+            <br>
+            <button type="submit" class="btn btn-primary btn-lg">
+                수정 완료</button>
         </form>
 
     </div>
