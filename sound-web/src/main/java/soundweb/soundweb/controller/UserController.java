@@ -44,7 +44,8 @@ public class UserController {
     public String login(@RequestParam(name ="userId") String userId,
                         @RequestParam(name="userPassword")String userPassword,
                         HttpSession session,
-                        RedirectAttributes redirectAttributes){
+                        RedirectAttributes redirectAttributes,
+                        Model model){
         //로그인 함수 만들고
         List<UserDto> findUser = jdbcUserServiceIMP.login(userId, userPassword);
         if(findUser.isEmpty()){

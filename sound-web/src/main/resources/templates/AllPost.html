@@ -27,7 +27,8 @@
     <div>
         <div class="divlog">
             방문수:<p1 th:text="${cookieCount}">쿠키</p1><br>
-            <a href="/login" class="btn btn-lg btn-primary">로그인</a>
+            <a href="/login"  th:if="!${session?.userName}" class="btn btn-lg btn-primary">로그인</a>
+            <a href="/logout" th:if="${session?.userName}" class="btn btn-lg btn-primary">로그아웃</a>
             <a href="/write" class="btn btn-secondary btn-lg">글쓰기</a>
         </div>
         <table class="table tb1">
@@ -60,9 +61,10 @@
         <!--페이징 부분-->
         <nav aria-label="...">
             <ul class="pagination ul1">
-                <li class="page-item disabled">
+                <li class="page-item ">
                     <a  th:href="@{/?page=1}"
-                        class="page-link">
+                        class="page-link"
+                        >
                         <span aria-hidden="true">처음</span>
                     </a>
                 </li>
