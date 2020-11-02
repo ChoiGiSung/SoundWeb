@@ -20,6 +20,9 @@
               margin-left: auto;
               margin-right: auto;
         }
+        .navi{
+            display: inline-block;
+        }
     </style>
 </head>
 <body>
@@ -59,7 +62,7 @@
     </div>
     <div>
         <!--페이징 부분-->
-        <nav aria-label="...">
+        <nav aria-label="..." class="navi">
             <ul class="pagination ul1">
                 <li class="page-item ">
                     <a  th:href="@{/?page=1}"
