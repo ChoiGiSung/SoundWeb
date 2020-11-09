@@ -3,10 +3,15 @@
          xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" >
     <title>게시판</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <style>
+        .main{
+            margin: 0 auto;
+            width: 700px;
+            }
+
         .tb1{
             text-align: center;
         }
@@ -26,8 +31,12 @@
     </style>
 </head>
 <body>
+<div class="main">
+
 
     <div>
+
+        <div th:replace="fragments/navi :: navi"/>
         <div class="divlog">
             방문수:<p1 th:text="${cookieCount}">쿠키</p1><br>
             <a href="/login"  th:if="!${session?.userName}" class="btn btn-lg btn-primary">로그인</a>
@@ -102,5 +111,6 @@
         </nav>
 
     </div>
+</div>
 </body>
 </html>

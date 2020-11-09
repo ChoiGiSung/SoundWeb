@@ -21,7 +21,7 @@ public class UserController {
     @Autowired
     private JdbcUserServiceIMP jdbcUserServiceIMP;
 
-    @RequestMapping("/")
+    @RequestMapping("/allpost")
     public String home(){
         return "redirect:/allpost";
     }
