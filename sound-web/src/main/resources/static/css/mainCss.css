@@ -1,0 +1,15 @@
+        .bottom{
+         text-align: center;
+         background-color: #EFEFEF;
+        }
+
+        .main{
+            background-color: aliceblue;
+
+         }
+        .logo{
+            text-align: center
+        }
+        .navbar{
+            justify-content: center;
+        }

@@ -4,58 +4,61 @@
     <meta charset="UTF-8" content="width=device-width, initial-scale=1.0">
     <title>당나귀(당신과 나의 귀건강)</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/mainCss.css">
     <style>
-        .main{
-            width: 700px;
+        .content{
             margin: 0 auto;
-            text-align: center;
+            width: 1000px;
+            margin-top: 50px;
         }
-        .navbar{
-            justify-content: center;
+
+        .img2{
+            margin-left: 50px;
         }
+         .img3{
+            margin-left: 50px;
+            margin-top: 10px;
+        }
+
+
+
+
     </style>
 </head>
 <body>
+<div th:replace="fragments/navi :: navi"/>
 <div class="main">
 
-    <div th:replace="fragments/navi :: navi"/>
+
     <br>
-
-    <div>
-        <img src="https://health.chosun.com/site/data/img_dir/2019/08/02/2019080201692_0.jpg"
-             alt="이미지" width="200px" height="300px" align="left">
-        <br>
-        <br><br><br>
-        <p>ddddddddddddddddddddddddddddddddddddddddddddddd
-            ddddddddddddddddddddddddddddddddddddddddddddddd
-            ddddddddddddddddddddddddddddddddddddddddddddddd
-            ddddddddddddddddddddddddddddddddddddddddddddddd
-            ddddddddddddddddddddddddddddddddddddddddddddddd
-            ddddddddddddddddddddddddddddddddddddddddddddddd
-            ddddddddddddddddddddddddddddddddddddddddddddddd
-            ddddddddddddddddddddddddddddddddddddddddddddddd
-
-        </p>
+    <div class="content">
+        <div>
+            <a href="/allpost">
+                <img src="https://health.chosun.com/site/data/img_dir/2019/08/02/2019080201692_0.jpg"
+                     alt="이미지" width="500px" height="800px" align="left">
+            </a>
+        </div>
+        <div>
+            <a href="/jupasu">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Animal_hearing_frequency_range.svg/1200px-Animal_hearing_frequency_range.svg.png"
+                     alt="이미지" width="440px" height="400px"
+                     class="img2">
+            </a>
+            <br>
+        </div>
+        <div >
+            <a href="/allpost">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Animal_hearing_frequency_range.svg/1200px-Animal_hearing_frequency_range.svg.png"
+                     alt="이미지" width="440px" height="400px"
+                     class="img3">
+            </a>
+            <br>
+        </div>
     </div>
-    <div>
-        <br>
-        <h1>가정 주파수란?</h1>
-        <br>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Animal_hearing_frequency_range.svg/1200px-Animal_hearing_frequency_range.svg.png"
-             alt="이미지" width="400px" height="500px" >
-        <h5>
-            가청범위(Hearing range)는 인간, 또는 여타 동물들이 감지할 수 있는 주파수의 범위를 가리키는 용어이다. 인간의 가청범위는 약 20~20,000Hz에 이른다. 일부 동물들은 인간보다 훨씬 더 넓은 범위의 가청범위를 가진다. 예컨대 일부 돌고래와 박쥐 종류는 100,000Hz 이상의 초음파를 감지할 수 있으며 코끼리는 14-16Hz, 일부 고래는 물 속에서 7Hz 이하의 초저주파를 감지할 수 있다.
-        </h5>
-
-        <br>
-    </div>
+<div th:replace="fragments/bottom :: bottom"></div>
 
 
-    <div>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <hr>
-        <p2>주소</p2>
-    </div>
+
 </div>
 
 </body>

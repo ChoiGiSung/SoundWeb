@@ -47,7 +47,7 @@ public class WriteController {
             redirectAttributes.addFlashAttribute("errorMessage","로그인 하라고");
             return "redirect:/login";
         }
-        return "/writePost";
+        return "/board/writePost";
     }
 
     //글쓰기 완료시
@@ -94,7 +94,7 @@ public class WriteController {
             }
 
             model.addAttribute("onePost",findOne);
-            return "/readPostOne";
+            return "/board/readPostOne";
         }
 
 
@@ -149,7 +149,7 @@ public class WriteController {
         model.addAttribute("boardList",boardList);
         model.addAttribute("pagination",pagination);
 
-        return "/AllPost";
+        return "/board/AllPost";
     }
 
     //업데이트 버튼 눌러서 오는곳
@@ -170,7 +170,7 @@ public class WriteController {
         //업데이트에서 수정 완료를 누르면 내영 set
         logger.info(postId+"");
 
-        return "/updatePost";
+        return "/board/updatePost";
     }
 
     //업데이트 완료
