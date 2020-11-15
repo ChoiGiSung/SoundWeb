@@ -6,18 +6,26 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/mainCss.css">
     <style>
-        .content{
-            margin: 0 auto;
-            width: 1000px;
-            margin-top: 50px;
-        }
 
-        .img2{
+
+        .imgContent1{
+            background-image: url("/css/img/board.jpg");
             margin-left: 50px;
+            width:440px;
+            height:390px;
+            display: block;
         }
-         .img3{
+         .imgContent2{
+            background-image: url("/css/img/baby.jpg");
             margin-left: 50px;
             margin-top: 10px;
+            display: block;
+        }
+        .img1{
+                background-image: url("/css/img/baby.jpg");
+                width:500px;
+                height:800px;
+                display: block;
         }
 
 
@@ -32,27 +40,35 @@
 
     <br>
     <div class="content">
-        <div>
-            <a href="/allpost">
-                <img src="https://health.chosun.com/site/data/img_dir/2019/08/02/2019080201692_0.jpg"
-                     alt="이미지" width="500px" height="800px" align="left">
-            </a>
-        </div>
-        <div>
-            <a href="/jupasu">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Animal_hearing_frequency_range.svg/1200px-Animal_hearing_frequency_range.svg.png"
-                     alt="이미지" width="440px" height="400px"
-                     class="img2">
-            </a>
-            <br>
-        </div>
-        <div >
-            <a href="/allpost">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Animal_hearing_frequency_range.svg/1200px-Animal_hearing_frequency_range.svg.png"
-                     alt="이미지" width="440px" height="400px"
-                     class="img3">
-            </a>
-            <br>
+        <div style="display:flex;">
+            <div>
+                <a href="/allpost" class="img1">
+                    <div class="comant">
+                        <h3>안녕하세여</h3>
+                        <h3>평가 기준은요</h3>
+                    </div>
+                </a>
+            </div>
+            <div>
+                <div>
+                    <a href="/allpost" class="imgContent1">
+                        <div class="comant">
+                            <h3>안녕하세여</h3>
+                            <h3>게시판 입니다.</h3>
+                        </div>
+                    </a>
+                    <br>
+                </div>
+                <div >
+                    <a href="/jupasu" class="imgContent1">
+                        <div class="comant">
+                            <h3>안녕하세여</h3>
+                            <h3>평가 기준은요</h3>
+                        </div>
+                    </a>
+                    <br>
+                </div>
+            </div>
         </div>
     </div>
 <div th:replace="fragments/bottom :: bottom"></div>

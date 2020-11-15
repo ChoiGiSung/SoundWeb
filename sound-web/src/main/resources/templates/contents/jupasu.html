@@ -4,11 +4,101 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <title>Title</title>
+    <link rel="stylesheet" href="/css/mainCss.css">
+    <title>평가기준</title>
+
+    <style>
+        .cover{
+            width: 100%;
+        }
+        .imgCover{
+            position: relative;
+        }
+        .text{
+            padding: 5px 10px;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate( -50%, -50% );
+        }
+    </style>
 </head>
 <body>
 <div>
     <div th:replace="fragments/navi :: navi"/>
+    <div class="main" >
+        <div class="imgCover">
+            <div>
+                <img src="/css/img/girl.jpg" alt="이미지" class="cover"/>
+            </div>
+            <div class="text">
+                <h1 style="color:tan">평  가  기  준</h1>
+            </div>
+
+        </div>
+
+        <br>
+        <div class="content">
+            <div>
+                <h1>가청 주파수란?</h1>
+                <hr>
+            </div>
+            <div>
+                <h3>1. 모든 소리는 주파수로 이해할 수 있다. </h3>
+                <h5><br>
+                    모든 소리는 에너지가 담겨있어요. 그 에너지와 소리의
+                    색깔 세기를 구별하는걸 눈에보기 쉽게 ‘파형’으로 인식하는데요 ! 그래서 Wave 라고 하죠. 음의 높낮이를 주파수로 측정하고 있어요 !
+                    우리가 듣는 모든 소리들은 다 많은 주파수들의 얽히고 섥힌 조합이라고 보시면 되요. 예를들어 피아노 음정 하나를 듣더라도 그건 딱 그 특정 주파수만 내는게 아니라 수 많은 다른 주파수들이 합쳐진거죠 !
+                </h5>
+                <h3><br>2. 인간의 귀는 나이가들수록 소모된다. </h3>
+                <h5><br>
+                    사람마다 귀의 건강한 정도에 따라서 다르긴 하겠지만 나이가 들어갈수록 약해지기 마련이죠.
+                    인간의 가청주파수(audio frequency band) 사람의 귀가 소리로 느낄 수 있는 음파의 주파수 영역으로, 보통 쉽게 20Hz ~ 20kHz 라고 하죠 ! (쉽게 20부터 20까지! ㅎㅎ 20kHz 는 20,000Hz 죠?)
+                    성인은 대게 50Hz~16KHz 이라고 하는데요. 여자는 12Khz까지 남자는 5Khz까지 떨어질 수 있다고 해요. 그렇다고 20Hz 아래가 아예 필요가 없나? 거기서부턴 사람에게는 소리라기보다 “파동 에너지”라고 봐야해요. 고주파수 히어링 로스에 관해서는 해외 사이트들에도 많이 나와있으니 참조해요 !
+                </h5>
+            </div>
+
+            <div>
+                <h1><br>주파수 범위</h1>
+                <hr>
+            </div>
+
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th>주파수</th>
+                    <th>해석</th>
+                </tr>
+                </thead>
+                <tr>
+                    <td> 8kHz</td> <td>청각 장애를 의심해야하며 나이가 매우 많은 경우</td>
+                </tr>
+                <tr>
+                    <td>10kHz </td><td>자신의 10대를 이해 못할만큼 나이가 든 경우(50대 추청)</td>
+                </tr>
+                <tr>
+                    <td> 12kHz</td> <td>중년에 근접한 경우(40대 추정)</td>
+                </tr>
+                <tr>
+                    <td>14.1kHz</td><td>젊음이 아쉬운 나이(30대 후반 추정)</td>
+                </tr>
+                <tr>
+                    <td> 15.8kHz</td> <td>20대의 청력 추정</td>
+                </tr>
+                <tr>
+                    <td>16.7kHz</td><td>20대 초반 혹은 10대 후반 추정</td>
+                </tr>
+                <tr>
+                    <td> 17.7kHz</td> <td>10대 추정</td>
+                </tr>
+                <tr>
+                    <td>18.8kHz</td><td>예민한 10대 추정(주파수를 느낄 수있는 청력)</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div th:replace="fragments/bottom :: bottom"></div>
 </div>
 
 </body>
