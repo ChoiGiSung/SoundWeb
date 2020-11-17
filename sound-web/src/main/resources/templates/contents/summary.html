@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html 	lang="en"
+         xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/mainCss.css">
+    <title>개요</title>
+</head>
+
+<body>
+
+<div>
+    <div th:replace="fragments/navi :: navi"/>
+    <div class="main">
+        <div class="imgCover">
+            <div>
+                <img src="/css/img/optimize.jpg" alt="이미지" class="cover"/>
+            </div>
+            <div class="text">
+                <h1 style="color:tan">개    요</h1>
+            </div>
+        </div>
+        <div class="content">
+            <div>
+                <br><br><br>
+                <h2>필요성을 생각하자!</h2><hr>
+                <p>현대인은 많은시간 귀를 사용한다 하지만 귀는 한번 망가지면 다시 되돌릴 수 없는 귀중한 곳이다. 그래서 경각심을 갖자는 취지에서 제작 했다.</p>
+            </div>
+            <div>
+                <br><br><br>
+                <h2>기능은 뭐가 있을까요?</h2><hr>
+                <p>
+                    <h4>어플에는 이런 기능이 있어요!</h4>
+                    <p>로그인 기능,이어폰 사용시간 측정 기능,청력테스트 기능,주변 소음측정 기능,사용자 커스텀 음량</p>
+                </p>
+            </div>
+            <div>
+                <img src="/css/img/img1.png" alt="어플 이미지" style="padding: 20px;"/>
+                <img src="/css/img/img2.png" alt="어플 이미지" style="padding: 20px;"/>
+                <img src="/css/img/img3.png" alt="어플 이미지" style="padding: 20px;"/>
+                <img src="/css/img/img4.png" alt="어플 이미지" style="padding: 20px;"/>
+            </div>
+            <div>
+                <br><br>
+                <h4 >로그인 기능</h4>
+                <p>(로그인시 서버에서 restAPI통신을 통해 json형태로 값을 받아온다)</p>
+                <h4>이어폰 사용시간 측정 기능</h4>
+                <p>(사용자의 블루투스,선 이어폰의 사용시간을 그래프로 보여준다. 앱을 종료시켜도 사용시간을 계산한다.)</p>
+                <h4>청력테스트 기능</h4>
+                <p>(연령대마다 다른 주파수를 사용해 사용자의 귀건강을 확인한다.)</p>
+                <h4>주변 소음측정 기능</h4>
+                <p>(외부마이크를 통해 주변의 소음을 측정하고 현재 데시벨을 보여준다.)</p>
+                <h4>사용자 커스텀 음량</h4>
+                <p>(사용자가 상황마다 고정시킨 소리를 다시 사용할 수 있다, 알림창에 최대 상위 3개를 위치시켜 유동적으로 변화할 수 있다.)</p>
+            </div>
+        </div>
+    </div>
+    <div th:replace="fragments/bottom :: bottom"></div>
+
+</div>
+</body>
+</html>

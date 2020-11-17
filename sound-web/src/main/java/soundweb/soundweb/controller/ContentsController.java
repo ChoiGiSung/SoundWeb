@@ -16,4 +16,9 @@ public class ContentsController {
     public String jupasu(){
         return "contents/jupasu";
     }
+
+    @RequestMapping("/summary")
+    public String Summary(){
+        return "contents/summary";
+    }
 }

@@ -19,3 +19,18 @@
             width: 1000px;
             margin-top: 50px;
         }
+
+                .cover{
+                    width: 100%;
+                }
+                .imgCover{
+                    position: relative;
+                }
+                .text{
+                    padding: 5px 10px;
+                    text-align: center;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate( -50%, -50% );
+                }
