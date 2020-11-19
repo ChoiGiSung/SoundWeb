@@ -8,29 +8,28 @@
     <style>
 
 
-        .imgContent1{
-            background-image: url("/css/img/board.png");
-            margin-left: 50px;
-            width:440px;
-            height:390px;
-            display: block;
+
+
+        .board{
+            width: 100%;
+            background-color: beige;
+            height: 100px;
+            text-align: -webkit-center;
         }
-         .imgContent2{
-            background-image: url("/css/img/board.png");
-            width:440px;
-            height:390px;
-            margin-left: 50px;
-            margin-top: 10px;
-            display: block;
+        .maincon{
+            display: flex;
+            justify-content: center;
+        }
+        .onetwo{
+            margin: 100px;
+            width: 100%;
+            text-align: center;
         }
         .img1{
-                background-image: url("/css/img/hearTest.jpg");
-                width:500px;
-                height:800px;
-                display: block;
+            border-radius: 90%;
+                width: 100px;
+                height: 100px;
         }
-
-
 
 
     </style>
@@ -38,41 +37,34 @@
 <body>
 <div th:replace="fragments/navi :: navi"/>
 <div class="main">
-
-
-    <br>
-    <div class="content">
-        <div style="display:flex;">
-            <div>
-                <a href="/summary" class="img1">
-                    <div class="comant">
-                        <h3>안녕하세여</h3>
-                        <h3>개요</h3>
-                    </div>
-                </a>
-            </div>
-            <div>
-                <div>
-                    <a href="/allpost" class="imgContent1">
-                        <div class="comant">
-                            <h3>안녕하세여</h3>
-                            <h3>게시판 입니다.</h3>
-                        </div>
-                    </a>
-                    <br>
-                </div>
-                <div >
-                    <a href="/jupasu" class="imgContent2">
-                        <div class="comant">
-                            <h3>안녕하세여</h3>
-                            <h3>평가 기준은요</h3>
-                        </div>
-                    </a>
-                    <br>
-                </div>
-            </div>
+    <div class="board">
+        <h3>안녕하세요</h3>
+        <p>그게 아니라요</p>
+    </div>
+    <div class="maincon">
+        <div class="onetwo">
+            <img src="/css/img/hearTest.jpg" alt="이미지" class="img1">
+            <h2>개요</h2>
+            <p>당나귀를 왜 만들었냐구요?당나귀를 왜 만들었냐구요?당나귀를 왜 만들었냐구요?
+                당나귀를 왜 만들었냐구요?당나귀를 왜 만들었냐구요?당나귀를 왜 만들었냐구요?
+                당나귀를 왜 만들었냐구요?당나귀를 왜 만들었냐구요?당나귀를 왜 만들었냐구요?</p>
+            <a href="/summary" class="btn btn-primary">이동 설명</a>
+        </div>
+        <div class="onetwo">
+            <img src="/css/img/board.png" alt="이미지" class="img1">
+            <h2>가청 주파수란?</h2>
+            <p>간단 설명</p>
+            <a href="/jupasu" class="btn btn-primary">이동 설명</a>
+        </div>
+        <div class="onetwo">
+            <img src="/css/img/board.png" alt="이미지" class="img1">
+            <h2>게시판</h2>
+            <p>간단 설명</p>
+            <a href="/allpost" class="btn btn-primary">이동 설명</a>
         </div>
     </div>
+    <br>
+
 <div th:replace="fragments/bottom :: bottom"></div>
 
 
