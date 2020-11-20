@@ -12,8 +12,8 @@
 
         .board{
             width: 100%;
-            background-color: beige;
-            height: 100px;
+            background-color: #bfc4f6;
+            height: 100%;
             text-align: -webkit-center;
         }
         .maincon{
@@ -37,30 +37,30 @@
 <body>
 <div th:replace="fragments/navi :: navi"/>
 <div class="main">
-    <div class="board">
+    <div class="board"><br>
         <h3>안녕하세요</h3>
-        <p>그게 아니라요</p>
+        <p></p>
+        <a href="/summary" class="btn btn-secondary">개요</a><br>
     </div>
     <div class="maincon">
         <div class="onetwo">
             <img src="/css/img/hearTest.jpg" alt="이미지" class="img1">
             <h2>개요</h2>
-            <p>당나귀를 왜 만들었냐구요?당나귀를 왜 만들었냐구요?당나귀를 왜 만들었냐구요?
-                당나귀를 왜 만들었냐구요?당나귀를 왜 만들었냐구요?당나귀를 왜 만들었냐구요?
-                당나귀를 왜 만들었냐구요?당나귀를 왜 만들었냐구요?당나귀를 왜 만들었냐구요?</p>
-            <a href="/summary" class="btn btn-primary">이동 설명</a>
+            <p>당나귀를 왜 만들었냐구요?</p>
+            <p>우리는 다양한 기능을 제공해 줘요!</p>
+            <a href="/summary" class="btn btn-primary">더보기</a>
         </div>
         <div class="onetwo">
-            <img src="/css/img/board.png" alt="이미지" class="img1">
+            <img src="/css/img/jupasu.png" alt="이미지" class="img1">
             <h2>가청 주파수란?</h2>
-            <p>간단 설명</p>
-            <a href="/jupasu" class="btn btn-primary">이동 설명</a>
+            <p>당신의 귀건강을 어떻게 평가 할까요?</p>
+            <a href="/jupasu" class="btn btn-primary">더보기</a>
         </div>
         <div class="onetwo">
             <img src="/css/img/board.png" alt="이미지" class="img1">
             <h2>게시판</h2>
-            <p>간단 설명</p>
-            <a href="/allpost" class="btn btn-primary">이동 설명</a>
+            <p>무엇이든지 물어보세요!</p>
+            <a href="/allpost" class="btn btn-primary">더보기</a>
         </div>
     </div>
     <br>
